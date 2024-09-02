@@ -1,0 +1,82 @@
+.home-title{
+    position: relative;
+    height: 50%;
+
+    h1{
+        font-size: 2.25em;
+        font-family: $fancy-font;
+        text-transform: uppercase;
+        text-align: center;
+        color: $dark-grey;
+        letter-spacing: .25em;
+        text-shadow: 2px 2px 2px #23f6f5;
+        animation: 1.5s ease-out 0s 1 slideInFromBottom;
+    }
+
+    ul{
+        display: none;
+
+        @include respond-to('bp2'){
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            bottom: 30px;
+
+            li{
+                position: relative;
+
+                a{
+                    text-decoration: none;
+                    color: $neutral-color;
+                    font-family: $normal-font;
+                    font-weight: 100;
+                    font-size: .25em;
+                    transition: all .5s ease-out;
+
+                    &:hover{
+                        color: $highlight-color;
+                    }
+                }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    bottom: 25px;
+                    transform: translateX(-50%);
+                    margin: 0 auto;
+                    height: 2.5px;
+                    background-color: $highlight-color;
+                    width: 0;
+                    transition: all .5s ease-out;
+                }
+
+                &:hover::after{
+                    width: 70%;
+                }
+            }          
+        }
+    }
+
+    @include respond-to('bp1'){
+        font-size: 2em;
+    }
+
+    @include respond-to('bp2'){
+        font-size: 3em;
+    }
+
+    @include respond-to('bp3'){
+        font-size: 4em;
+    }
+
+    @keyframes slideInFromBottom {
+        0% {
+            transform: translatey(19em);
+        }
+        100% {
+            transform: translatey(0);
+        }
+    }
+}
