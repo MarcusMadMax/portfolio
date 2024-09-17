@@ -31,7 +31,7 @@ $fancy-font: "Anurati";
   .home {
     height: 100vh;
     background-image: url("../images/background-home.jpg");
-    background-color: #35373d;
+    background-color: $dark-grey;
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: hard-light;
@@ -212,8 +212,13 @@ $fancy-font: "Anurati";
             }
           }
 
-          @include respond-to("bp2") {
-            height: 49%;
+          @include respond-to("bp1.5") {
+            width: 100%;
+            height: 70px;
+            top: 54%;
+          }
+
+          @include respond-to("bp3") {
             margin: 0;
             align-items: flex-start;
             justify-content: center;
@@ -250,6 +255,7 @@ $fancy-font: "Anurati";
         position: relative;
         height: 100vh;
         overflow: hidden;
+        margin-bottom: 0;
 
         .work-image {
           position: relative;
@@ -292,9 +298,20 @@ $fancy-font: "Anurati";
           }
         }
 
-        &:nth-of-type(5) {
-          background: $dark-grey;
+        &:nth-of-type(1) {
+          .work-image {
+            img {
+              width: 90%;
+              height: auto;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              opacity: 0.5;
+            }
+          }
+        }
 
+        &:nth-of-type(6) {
           .work-image {
             img {
               top: 50%;
@@ -302,18 +319,22 @@ $fancy-font: "Anurati";
               transform: translateY(-50%);
               width: 100%;
               height: auto;
+              opacity: 0.5;
             }
           }
         }
+
+        &:nth-of-type(odd) {
+          background-color: #000;
+        }
       }
 
-      figure:nth-child(odd) {
-        background-color: black;
-        margin-bottom: 0;
-      }
-
-      figure:nth-child(even) {
-        margin-bottom: 0;
+      .coolkiwikids {
+        background-image: url(/assets/images/work-samples/kiwi-foot-steps.png);
+        h2,
+        span {
+          color: $dark-grey;
+        }
       }
     }
 
@@ -353,14 +374,14 @@ $fancy-font: "Anurati";
                 bottom: 10px;
                 transform: translateX(-50%);
                 margin: 0 auto;
-                height: 2.5px;
+                height: 1px;
                 background-color: $highlight-color;
                 width: 0;
                 transition: all 0.5s ease-out;
               }
 
               &:hover::after {
-                width: 70%;
+                width: 100%;
               }
             }
           }
@@ -575,10 +596,11 @@ $fancy-font: "Anurati";
 
     .project-header {
       position: sticky;
-      z-index: 55;
+      height: 10em;
       top: 0;
       background-color: rgba($color: $dark-grey, $alpha: 1);
       box-shadow: 0px 2px 15px black;
+      z-index: 55;
 
       h1 {
         position: absolute;
@@ -593,6 +615,10 @@ $fancy-font: "Anurati";
       }
 
       img {
+        display: block;
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
         opacity: 0.5;
       }
 
@@ -608,54 +634,63 @@ $fancy-font: "Anurati";
     }
 
     .desktop-nav {
-      display: none;
+      position: sticky;
+      display: block;
+      height: 1em;
+      top: 150px;
+      z-index: 60;
 
-      @include respond-to("bp1") {
-        display: none;
+      @include respond-to("bp1.5") {
+        top: 80px;
       }
 
       @include respond-to("bp2") {
-        position: relative;
-        z-index: 60;
-        display: block;
         position: fixed;
-        width: 100%;
+        top: -10px;
+        right: 0;
+        height: 0;
+      }
 
-        ul {
-          position: relative;
-          padding-left: 0;
+      ul {
+        position: relative;
+        padding-left: 0;
 
-          li {
-            margin: 0 auto;
+        li {
+          margin: 0 auto;
 
-            a {
-              text-decoration: none;
-              color: $dark-grey;
-              font-family: $normal-font;
-              font-weight: 700;
+          a {
+            display: block;
+            text-align: end;
+            text-decoration: none;
+            color: $highlight-color;
+            font-family: $normal-font;
+            font-weight: 700;
+            font-size: 2em;
+            transition: all 0.5s ease-out;
+
+            @include respond-to("bp2") {
               font-size: 4em;
+            }
+
+            &:hover {
+              color: $highlight-color;
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: 50%;
+              bottom: 30px;
+              transform: translateX(-50%);
+              margin: 0 auto;
+              height: 1px;
+              background-color: $highlight-color;
+              width: 0;
               transition: all 0.5s ease-out;
+            }
 
-              &:hover {
-                color: $highlight-color;
-              }
-
-              &::after {
-                content: "";
-                position: absolute;
-                left: 50%;
-                bottom: 10px;
-                transform: translateX(-50%);
-                margin: 0 auto;
-                height: 2.5px;
-                background-color: $highlight-color;
-                width: 0;
-                transition: all 0.5s ease-out;
-              }
-
-              &:hover::after {
-                width: 7%;
-              }
+            &:hover::after {
+              width: 60%;
             }
           }
         }
@@ -672,6 +707,10 @@ $fancy-font: "Anurati";
       padding: 0 2em;
     }
 
+    h3 {
+      padding: 0 2em;
+    }
+
     p {
       text-align: justify;
       padding: 0 3em;
@@ -682,7 +721,7 @@ $fancy-font: "Anurati";
 
         @include respond-to("bp2") {
           transition: all 0.5s ease-out;
-          color: $dark-grey;
+          // color: $dark-grey;
           text-decoration: wavy;
 
           &:hover {
@@ -712,6 +751,7 @@ $fancy-font: "Anurati";
     .project-description {
       .ethic-divider {
         position: relative;
+        display: flex;
         background-color: #fff;
 
         #svg {
@@ -724,7 +764,7 @@ $fancy-font: "Anurati";
 
         img {
           opacity: 0.75;
-          display: block;
+          flex: 1 0 auto;
         }
       }
 
