@@ -324,9 +324,17 @@ $fancy-font: "Anurati";
           }
         }
 
-        &:nth-of-type(odd) {
+        &:nth-of-type(even) {
           background-color: #000;
         }
+      }
+
+      #fostermoore {
+        background-color: #000;
+      }
+
+      #portfolio {
+        background-color: $neutral-color;
       }
 
       .coolkiwikids {
@@ -615,9 +623,10 @@ $fancy-font: "Anurati";
       }
 
       img {
-        display: block;
-        width: auto;
+        width: 100%;
         height: 100%;
+        object-fit: cover;
+        object-position: bottom;
         margin: 0 auto;
         opacity: 0.5;
       }
