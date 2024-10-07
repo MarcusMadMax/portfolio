@@ -6,13 +6,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
 @import "parts/breakpoints";
-
-//colors
-$dark-grey: #35373d;
-$highlight-color: #23f6f5;
-$neutral-color: #fff;
-$normal-font: "Space Grotesk", sans-serif;
-$fancy-font: "Anurati";
+@import "parts/box";
+@import "parts/colors";
+@import "parts/nav";
+@import "parts/desktop-nav";
 
 * {
   padding: 0;
@@ -23,12 +20,8 @@ $fancy-font: "Anurati";
 .wrapper {
   position: relative;
 
-  // Navigation
-  @import "parts/nav";
-  @import "parts/desktop-nav";
-  //Navigation
-
   .home {
+    position: relative;
     height: 100vh;
     background-image: url("../images/background-home.jpg");
     background-color: $dark-grey;
@@ -47,6 +40,7 @@ $fancy-font: "Anurati";
       position: relative;
 
       aside {
+        position: relative;
         height: 100vh;
         text-transform: uppercase;
         display: flex;
@@ -181,6 +175,7 @@ $fancy-font: "Anurati";
   .work {
     .work-samples {
       aside {
+        position: relative;
         height: 100vh;
         text-transform: uppercase;
         display: flex;
@@ -263,9 +258,10 @@ $fancy-font: "Anurati";
 
           img {
             position: absolute;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            height: 100%;
+            height: 50%;
+            transform: translate(-50%, -50%);
           }
 
           @include respond-to("bp2") {
@@ -298,47 +294,59 @@ $fancy-font: "Anurati";
           }
         }
 
-        &:nth-of-type(1) {
-          .work-image {
-            img {
-              width: 90%;
-              height: auto;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              opacity: 0.5;
-            }
-          }
+        // &:nth-of-type(1) {
+        //   .work-image {
+        //     img {
+        //       width: 90%;
+        //       height: auto;
+        //       top: 50%;
+        //       left: 50%;
+        //       transform: translate(-50%, -50%);
+        //       opacity: 0.5;
+        //     }
+        //   }
+        // }
+
+        // &:nth-of-type(6) {
+        //   .work-image {
+        //     img {
+        //       top: 50%;
+        //       left: 0;
+        //       transform: translateY(-50%);
+        //       width: 100%;
+        //       height: auto;
+        //       opacity: 0.5;
+        //     }
+        //   }
+        // }
+      }
+
+      #pps {
+        .pps-img {
+          width: 30%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
 
-        &:nth-of-type(6) {
-          .work-image {
-            img {
-              top: 50%;
-              left: 0;
-              transform: translateY(-50%);
-              width: 100%;
-              height: auto;
-              opacity: 0.5;
-            }
-          }
-        }
-
-        &:nth-of-type(even) {
-          background-color: #000;
+        h2,
+        span {
+          color: #003b5c;
         }
       }
 
-      #fostermoore {
-        background-color: #000;
-      }
-
-      #portfolio {
-        background-color: $neutral-color;
+      #ppg {
+        .ppg-img {
+          height: 100%;
+          width: auto;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
 
       .coolkiwikids {
         background-image: url(../images/kiwi-foot-steps.png);
+
         h2,
         span {
           color: $dark-grey;
@@ -408,6 +416,7 @@ $fancy-font: "Anurati";
 
   .contact {
     aside {
+      position: relative;
       height: 100vh;
       text-transform: uppercase;
       display: flex;
