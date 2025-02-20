@@ -11,6 +11,10 @@
 @import "parts/nav";
 @import "parts/desktop-nav";
 
+:root {
+  --percentage: 0;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -469,11 +473,12 @@
           stroke: $highlight-color;
         }
 
-        .typedtext {
+        #mobileText {
           position: absolute;
-          top: 3.48em;
+          top: -20px;
           left: 1.85em;
           right: 1.75em;
+          padding-top: 5em;
           text-decoration: none;
           font-size: 1.2em;
           line-height: 1.6em;
@@ -524,19 +529,16 @@
           stroke: $highlight-color;
         }
 
-        .typedtext {
+        #emailText {
           position: absolute;
-          top: 1.48em;
+          top: 25px;
           left: 1.85em;
           right: 1.75em;
+          padding-top: 0;
           text-decoration: none;
           font-size: 1.2em;
           line-height: 1.6em;
           color: #35373d;
-        }
-
-        :hover {
-          color: rgba($color: #35373d, $alpha: 0.5);
         }
       }
 

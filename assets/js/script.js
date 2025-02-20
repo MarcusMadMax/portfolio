@@ -187,193 +187,134 @@ anime({
 
 //Type writer Contact page
 // set up text to print, each item in array is new line
-// var aText = new Array(
-//     "Here you can",
-//     "send me an",
-//     "e-mail"
-// );
+// var aText = new Array("Here you can", "send me an", "e-mail");
 // var iSpeed = 50; // time delay of print out
 // var iIndex = 0; // start printing array at this posision
 // var iArrLength = aText[0].length; // the length of the text array
 // var iScrollAt = 3; // start scrolling up at this many lines
 
 // var iTextPos = 0; // initialise text position
-// var sContents = ''; // initialise contents variable
+// var sContents = ""; // initialise contents variable
 // var iRow; // initialise current row
-// let myTypewriter = false
+// let myTypewriter = false;
 
 // function typewriter() {
-//     sContents = ' ';
-//     iRow = Math.max(0, iIndex - iScrollAt);
-//     var destination = document.getElementById("typedtext");
+//   sContents = " ";
+//   iRow = Math.max(0, iIndex - iScrollAt);
+//   var destination = document.querySelector(".typedtext");
 
-//     while (iRow < iIndex) {
-//         sContents += aText[iRow++] + '<br />';
+//   while (iRow < iIndex) {
+//     sContents += aText[iRow++] + "<br />";
+//   }
+//   destination.innerHTML =
+//     sContents + aText[iIndex].substring(0, iTextPos) + "_";
+//   if (iTextPos++ == iArrLength) {
+//     iTextPos = 0;
+//     iIndex++;
+//     if (iIndex != aText.length) {
+//       iArrLength = aText[iIndex].length;
+//       setTimeout("typewriter()", 500);
 //     }
-//     destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
-//     if (iTextPos++ == iArrLength) {
-//         iTextPos = 0;
-//         iIndex++;
-//         if (iIndex != aText.length) {
-//             iArrLength = aText[iIndex].length;
-//             setTimeout("typewriter()", 500);
-//         }
-//     } else {
-//         setTimeout("typewriter()", iSpeed);
-//     }
-//     myTypewriter = true
+//   } else {
+//     setTimeout("typewriter()", iSpeed);
+//   }
+//   myTypewriter = true;
 // }
 
-// window.addEventListener('scroll', () => {
-//     const scrollable = document.documentElement.scrollHeight - window.innerHeight
-//     const scrolled = window.scrollY
+// window.addEventListener("scroll", () => {
+//   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+//   const scrolled = window.scrollY;
 
-//     if (Math.floor(scrolled) == scrollable){
-//         typewriter();
-//     }
+//   if (Math.floor(scrolled) == scrollable) {
+//     typewriter();
+//   }
 // });
 
-const elementMobile = document.querySelector(".text-animation-mobile");
-const lettersHtmlMobile = elementMobile.textContent.replace(
-  /\S/g,
-  '<span class="letter">$&</span>'
-);
+// const typedText = document.querySelector(".text-animation-mobile");
+// const strTypedText = typedText.textContent;
+// const splitTypedText = strTypedText.split("");
+// console.log(strTypedText);
 
-elementMobile.innerHTML = `<div class="letters">${lettersHtmlMobile}</div><span class="cursor"></span>`;
-elementMobile.style.display = "block";
+// var textWrapper = document.querySelector(".typedtext");
+// textWrapper.innerHTML = textWrapper.textContent.replace(
+//   /\S/g,
+//   "<span class='letter'>$&</span>"
+// );
 
-const lettersMobile = Array.from(elementMobile.querySelectorAll(".letter"));
-const TYPE_AFTER_MSMobile = 0;
-const JUMP_AFTER_MSMobile = 150;
+// var letter = document.querySelectorAll(".letter");
+// var i = 0;
+// var currentID = 0;
+// var slideCount = letter.length;
+// const contact = document.querySelector(".contact");
 
-const blinkMobile = anime({
-  targets: ".text-animation-mobile .cursor",
-  loop: false,
-  duration: 750,
-  opacity: [{ value: [1, 1] }, { value: [0, 0] }],
-});
+// document.addEventListener("scroll", (e) => {
+//   let scrolled =
+//     contact.scrollTop /
+//     (document.documentElement.scrollHeight -
+//       document.documentElement.clientHeight);
 
-var tlMobile = anime.timeline({
-  loop: false,
-  autoplay: false,
-  opacity: 0,
-});
-tlMobile.add(
-  {
-    targets: ".text-animation-mobile .cursor",
-    translateX: lettersMobile.map((letter, i) => ({
-      value: letter.offsetLeft + letter.offsetWidth,
-      duration: 1,
-      delay: i === 0 ? 0 : JUMP_AFTER_MSMobile,
-    })),
-  },
-  TYPE_AFTER_MSMobile
-);
-tlMobile.add(
-  {
-    targets: ".text-animation-mobile .letter",
-    opacity: [0, 1],
-    duration: 0.1,
-    delay: anime.stagger(JUMP_AFTER_MSMobile),
-    changeBegin: () => {
-      blinkMobile.reset();
-      blinkMobile.pause();
-    },
-    changeComplete: () => {
-      blinkMobile.restart();
-    },
-  },
-  TYPE_AFTER_MSMobile
-);
-tlMobile.add({
-  targets: ".text-animation-mobile",
-  opacity: 1,
-  duration: 1000,
-  delay: 500,
-  easing: "easeOutExpo",
-});
+//   //   var nextID = currentID + 1;
 
-var s2Mobile = $(".text-animation-mobile").offset().top;
+//   //   if (nextID < slideCount) {
+//   //     letter[nextID].style.setProperty(
+//   //       "--percentage",
+//   //       `${scrolled / 1}` * nextID
+//   //     );
+//   //   }
 
-$(document).on("scroll", function () {
-  var scrollTop = $(document).scrollTop();
-  //tl.duration
-  //tl.seek(2000)
-  //progress %
-  //500 is how much scrolling you want to map
-  //400 early staert
-  var progress = (scrollTop - s2Mobile + 1200) / 500;
-  tlMobile.seek(tlMobile.duration * progress);
-});
+//   //   currentID = nextID;
 
-const elementEmial = document.querySelector(".text-animation-email");
-const lettersHtmlEmial = elementEmial.textContent.replace(
-  /\S/g,
-  '<span class="letter">$&</span>'
-);
-elementEmial.innerHTML = `<div class="letters">${lettersHtmlEmial}</div><span class="cursor"></span>`;
-elementEmial.style.display = "block";
+//   letter.forEach(function (l, i) {
+//     console.log("====", i / letter.length, "Scrolled" + " " + scrolled);
+//     if (i / letter.length < scrolled) {
+//       l.style.setProperty("--percentage", 1);
+//     } else {
+//       l.style.setProperty("--percentage", 0);
+//     }
+//   });
+// });
 
-const lettersEmial = Array.from(elementEmial.querySelectorAll(".letter"));
-const TYPE_AFTER_MSEmial = 0;
-const JUMP_AFTER_MSEmial = 150;
+var mobileText = "Here you can call me under 022 340 7 453";
+var emailText = "Here you can send me an email";
+let mobileTextLength = mobileText.length;
+let emailTextLength = emailText.length;
 
-const blinkEmial = anime({
-  targets: ".text-animation-email .cursor",
-  loop: false,
-  duration: 750,
-  opacity: [{ value: [1, 1] }, { value: [0, 0] }],
-});
+function typingMobile(displayedLength) {
+  if (displayedLength <= mobileTextLength) {
+    $("#mobileText").text(mobileText.substring(0, displayedLength));
+  }
+}
 
-var tlEmial = anime.timeline({
-  loop: false,
-  autoplay: false,
-  opacity: 0,
-});
-tlEmial.add(
-  {
-    targets: ".text-animation-email .cursor",
-    translateX: lettersEmial.map((letter, i) => ({
-      value: letter.offsetLeft + letter.offsetWidth,
-      duration: 1,
-      delay: i === 0 ? 0 : JUMP_AFTER_MSEmial,
-    })),
-  },
-  TYPE_AFTER_MSEmial
-);
-tlEmial.add(
-  {
-    targets: ".text-animation-email .letter",
-    opacity: [0, 1],
-    duration: 0.1,
-    delay: anime.stagger(JUMP_AFTER_MSEmial),
-    changeBegin: () => {
-      blinkEmial.reset();
-      blinkEmial.pause();
-    },
-    changeComplete: () => {
-      blinkEmial.restart();
-    },
-  },
-  TYPE_AFTER_MSEmial
-);
-tlEmial.add({
-  targets: ".text-animation-email",
-  opacity: 1,
-  duration: 1000,
-  delay: 500,
-  easing: "easeOutExpo",
-});
+function typingEmail(displayedLength) {
+  if (displayedLength <= emailTextLength) {
+    $("#emailText").text(emailText.substring(0, displayedLength));
+  }
+}
 
-var s2Emial = $(".text-animation-email").offset().top;
+var controller = new ScrollMagic.Controller();
+var typewritingOnScroll = new TimelineMax();
 
-$(document).on("scroll", function () {
-  var scrollTop = $(document).scrollTop();
-  //tl.duration
-  //tl.seek(2000)
-  //progress %
-  //500 is how much scrolling you want to map
-  //400 early staert
-  var progress = (scrollTop - s2Emial + 1200) / 500;
-  tlEmial.seek(tlEmial.duration * progress);
-});
+var typewritingScene = new ScrollMagic.Scene({
+  triggerElement: "#mobileText",
+  duration: 300,
+})
+  .on("progress", function () {
+    let mobilescrollProgress = Math.ceil(
+      typewritingScene.progress() * mobileTextLength
+    );
+
+    typingMobile(mobilescrollProgress);
+  })
+
+  .on("progress", function () {
+    let emailscrollProgress = Math.ceil(
+      typewritingScene.progress() * emailTextLength
+    );
+
+    typingEmail(emailscrollProgress);
+  })
+
+  // .setPin("#text")
+  // .addIndicators({ name: "typewriting" })
+  .setTween(typewritingOnScroll)
+  .addTo(controller);
