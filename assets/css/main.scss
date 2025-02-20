@@ -338,13 +338,22 @@
         }
       }
 
-      #ppg {
+      #ppg,
+      #ppgTours {
         .ppg-img {
           height: 100%;
           width: auto;
           top: 0;
           left: 50%;
           transform: translateX(-50%);
+        }
+
+        .ppg-tours-img {
+          height: auto;
+          width: 90%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
 
